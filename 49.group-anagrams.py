@@ -1,0 +1,63 @@
+# @leet imports start
+from string import *
+from re import *
+from datetime import *
+from collections import *
+from heapq import *
+from bisect import *
+from copy import *
+from math import *
+from random import *
+from statistics import *
+from itertools import *
+from functools import *
+from operator import *
+from io import *
+from sys import *
+from json import *
+from builtins import *
+import string
+import re
+import datetime
+import collections
+import heapq
+import bisect
+import copy
+import math
+import random
+import statistics
+import itertools
+import functools
+import operator
+import io
+import sys
+import json
+from typing import *
+# @leet imports end
+
+
+# @leet start
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        anagram_map = {}
+
+        print(anagram_map)
+
+        for s in strs:
+            count = [0] * 26
+            for ch in s:
+                count[ord(ch) - ord("a")] += 1
+
+            anagram_map[tuple(count)].append(s)
+
+        print(anagram_map)
+
+        return list(anagram_map.values())
+
+
+solution = Solution()
+print(solution.groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+
+
+# @leet end
+
