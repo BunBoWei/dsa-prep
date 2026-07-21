@@ -38,26 +38,28 @@ from typing import *
 
 # @leet start
 class Solution:
-    def trap(self, height: list[int]) -> int:
-        left, right = 0, len(height) - 1
-        left_max, right_max = height[left], height[right]
-        water = 0
-        while left < right:
-            if left_max < right_max:
-                left += 1
-                left_max = max(left_max, height[left])
-                water += left_max - height[left]
-            else:
-                right -= 1
-                right_max = max(right_max, height[right])
-                water += right_max - height[right]
-        return water
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        prefProd = [1] * len(nums)
+        suffProd = [1] * len(nums)
+
+        res = []
+
+        for i in range(1, len(nums)):
+            prefProd[i] = nums[i - 1] * prefProd[i - 1]
+
+        for j in range(len(nums) - 2, -1, -1):
+            suffProd[j] = nums[j + 1] * suffProd[j + 1]
+
+        for i in range(len(nums)):
+            res.append(prefProd[i] * suffProd[i])
+
+        return res
 
 
-solution = Solution()
-solution.trap([])
+# solution = Solution()
+# print(solution.productExceptSelf([1, 2, 3, 4]))
+# print(solution.productExceptSelf([-1, 1, 0, -3, 3]))
 
 
-#
-#
 # @leet end
+

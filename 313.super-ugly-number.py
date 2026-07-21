@@ -35,29 +35,8 @@ import json
 from typing import *
 # @leet imports end
 
-
 # @leet start
 class Solution:
-    def trap(self, height: list[int]) -> int:
-        left, right = 0, len(height) - 1
-        left_max, right_max = height[left], height[right]
-        water = 0
-        while left < right:
-            if left_max < right_max:
-                left += 1
-                left_max = max(left_max, height[left])
-                water += left_max - height[left]
-            else:
-                right -= 1
-                right_max = max(right_max, height[right])
-                water += right_max - height[right]
-        return water
-
-
-solution = Solution()
-solution.trap([])
-
-
-#
-#
+    def nthSuperUglyNumber(self, n: int, primes: List[int]) -> int:
+        
 # @leet end
