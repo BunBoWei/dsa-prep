@@ -39,31 +39,23 @@ from typing import *
 # @leet start
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        if len(s) < 2:
-            return len(s)
-
+        map = {}
         left = 0
         right = 0
-        res = 0
-        map = {}
+        max_len = 0
 
         while right < len(s):
             if s[right] in map:
                 left = max(map[s[right]] + 1, left)
 
             map[s[right]] = right
-            res = max(right - left + 1, res)
+            max_len = max(right - left + 1, max_len)
             right += 1
 
-        return res
+        return max_len
 
 
 # solution = Solution()
 # print(solution.lengthOfLongestSubstring("abcabcbb"))
-# print(solution.lengthOfLongestSubstring("bbbbb"))
-# print(solution.lengthOfLongestSubstring("pwwkew"))
-# print(solution.lengthOfLongestSubstring("abba"))
-#
-#
-# @leet end
 
+# @leet end

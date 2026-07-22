@@ -47,6 +47,7 @@ class Solution:
                 freq[word] += 1
 
         sorted_keys = sorted(freq, key=lambda k: (-freq[k], k))
+        print(freq)
         return sorted_keys[:k]
 
 
@@ -56,4 +57,6 @@ print(
         ["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"], k=4
     )
 )
+
+print(solution.topKFrequent(["i", "love", "leetcode", "i", "love", "coding"], k=2))
 # @leet end
