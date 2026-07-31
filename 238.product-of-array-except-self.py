@@ -39,27 +39,25 @@ from typing import *
 # @leet start
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        prefProd = [1] * len(nums)
-        suffProd = [1] * len(nums)
-
-        res = []
+        res = [1] * len(nums)
 
         for i in range(1, len(nums)):
-            prefProd[i] = nums[i - 1] * prefProd[i - 1]
+            res[i] = res[i - 1] * nums[i - 1]
 
-        for j in range(len(nums) - 2, -1, -1):
-            suffProd[j] = nums[j + 1] * suffProd[j + 1]
+        print(res)
 
-        for i in range(len(nums)):
-            res.append(prefProd[i] * suffProd[i])
+        suffix = 1
+        for j in range(len(nums) - 1, -1, -1):
+            res[j] *= suffix
+            suffix *= nums[j]
 
         return res
 
 
-# solution = Solution()
-# print(solution.productExceptSelf([1, 2, 3, 4]))
-# print(solution.productExceptSelf([-1, 1, 0, -3, 3]))
+solution = Solution()
+print(solution.productExceptSelf([4, 2]))
+print(solution.productExceptSelf([1, 2, 3, 4]))
+print(solution.productExceptSelf([-1, 1, 0, -3, 3]))
 
 
 # @leet end
-

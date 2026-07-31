@@ -38,18 +38,28 @@ from typing import *
 
 # @leet start
 class Solution:
-    def fib(self, n: int) -> int:
-        if n < 2:
-            return n
-        prev = 0
-        curr = 1
-        for i in range(2, n + 1):
-            prev, curr = curr, prev + curr
-        return curr
+    def search(self, nums: List[int], target: int) -> int:
+        left = 0
+        right = len(nums) - 1
+
+        while left <= right:
+            mid = left + (right - left) // 2
+            if target > nums[mid]:
+                left = mid + 1
+            elif target < nums[mid]:
+                right = mid - 1
+            else:
+                return mid
+
+        return -1
 
 
 # solution = Solution()
-# print(solution.fib(4))
+# print(solution.search([-1, 0, 3, 5, 9, 12], 9))
+# print(solution.search([-1, 0, 3, 5, 9, 12], 2))
+# print(solution.search([5], 5))
+# print(solution.search([2, 5], 7))
 
 
 # @leet end
+

@@ -39,14 +39,18 @@ from typing import *
 # @leet start
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        diffs = {}
+        mp = {}
+        res = []
         for i in range(len(nums)):
-            diff = target - nums[i]
-            if nums[i] not in diffs:
-                diffs[diff] = i
+            if target - nums[i] not in mp:
+                mp[nums[i]] = i
             else:
-                return [diffs[nums[i]], i]
+                res = [mp[target - nums[i]], i]
+        return res
+
+
+solution = Solution()
+print(solution.twoSum([2, 7, 11, 15], 9))
 
 
 # @leet end
-

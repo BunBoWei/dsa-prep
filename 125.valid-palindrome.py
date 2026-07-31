@@ -38,34 +38,25 @@ from typing import *
 
 # @leet start
 class Solution:
-    def isAlphanumeric(self, ascii):
-        if (ascii >= ord("a") and ascii <= ord("z")) or (
-            ascii >= ord("0") and ascii <= ord("9")
-        ):
-            return True
-        return False
-
     def isPalindrome(self, s: str) -> bool:
         left = 0
         right = len(s) - 1
         while left < right:
-            while left < right and not self.isAlphanumeric(ord(s[left].lower())):
+            while left < right and not s[left].isalnum():
                 left += 1
-
-            while left < right and not self.isAlphanumeric(ord(s[right].lower())):
+            while left < right and not s[right].isalnum():
                 right -= 1
 
             if s[left].lower() != s[right].lower():
                 return False
 
-            left += 1
             right -= 1
-
+            left += 1
         return True
 
 
-solution = Solution()
-print(solution.isPalindrome("A b a"))
-
-
+# solution = Solution()
+# print(solution.isPalindrome("A man, a plan, a canal: Panama"))
+# print(solution.isPalindrome(".,"))
+#
 # @leet end

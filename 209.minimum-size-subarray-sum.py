@@ -38,18 +38,23 @@ from typing import *
 
 # @leet start
 class Solution:
-    def fib(self, n: int) -> int:
-        if n < 2:
-            return n
-        prev = 0
-        curr = 1
-        for i in range(2, n + 1):
-            prev, curr = curr, prev + curr
-        return curr
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        cur_sum = 0
+        left = 0
+        min_sub = len(nums) + 1
+        for right in range(len(nums)):
+            cur_sum += nums[right]
+            while cur_sum >= target:
+                min_sub = min(min_sub, right - left + 1)
+                cur_sum -= nums[left]
+                left += 1
+        return min_sub if min_sub != len(nums) + 1 else 0
 
 
-# solution = Solution()
-# print(solution.fib(4))
-
+solution = Solution()
+print(solution.minSubArrayLen(7, [2, 3, 1, 2, 4, 3]))
+print(solution.minSubArrayLen(1, [1, 4, 4]))
+print(solution.minSubArrayLen(target=11, nums=[1, 1, 1, 1, 1, 1, 1, 1]))
 
 # @leet end
+

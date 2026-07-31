@@ -27,7 +27,7 @@ import operator
 
 # @leet start
 class Solution(object):
-    def fib(self, n):
+    def curr(self, n):
         """
         :type n: int
         :rtype: int

@@ -38,18 +38,24 @@ from typing import *
 
 # @leet start
 class Solution:
-    def fib(self, n: int) -> int:
-        if n < 2:
-            return n
-        prev = 0
-        curr = 1
-        for i in range(2, n + 1):
-            prev, curr = curr, prev + curr
-        return curr
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        sum_k = 0
+        left = 0
+        max_avg = -math.inf
+
+        for right in range(len(nums)):
+            sum_k += nums[right]
+            window_length = right - left + 1
+            if window_length == k:
+                max_avg = max(max_avg, sum_k / window_length)
+                sum_k -= nums[left]
+                left += 1
+        return max_avg
 
 
 # solution = Solution()
-# print(solution.fib(4))
-
+# print(solution.findMaxAverage([1, 12, -5, -6, 50, 3], 4))
+# print(solution.findMaxAverage([5], 1))
 
 # @leet end
+

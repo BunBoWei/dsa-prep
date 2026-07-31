@@ -38,18 +38,18 @@ from typing import *
 
 # @leet start
 class Solution:
-    def fib(self, n: int) -> int:
-        if n < 2:
-            return n
-        prev = 0
-        curr = 1
-        for i in range(2, n + 1):
-            prev, curr = curr, prev + curr
-        return curr
+    def maxProfit(self, prices: List[int]) -> int:
+        max_profit = 0
+        min_price = 10**4
+        for price in prices:
+            if min_price > price:
+                min_price = price
+            else:
+                max_profit = max(max_profit, price - min_price)
+        return max_profit
 
 
 # solution = Solution()
-# print(solution.fib(4))
-
+# print(solution.maxProfit([7, 6, 5, 4, 3, 2, 3]))
 
 # @leet end

@@ -39,25 +39,18 @@ from typing import *
 # @leet start
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        anagram_map = {}
-
-        print(anagram_map)
-
+        map = {}
         for s in strs:
             count = [0] * 26
             for ch in s:
                 count[ord(ch) - ord("a")] += 1
+            key = tuple(count)
+            map.setdefault(key, []).append(s)
 
-            anagram_map[tuple(count)].append(s)
-
-        print(anagram_map)
-
-        return list(anagram_map.values())
+        return list(map.values())
 
 
-solution = Solution()
-print(solution.groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
-
+# solution = Solution()
+# print(solution.groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
 
 # @leet end
-

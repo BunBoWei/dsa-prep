@@ -38,18 +38,25 @@ from typing import *
 
 # @leet start
 class Solution:
-    def fib(self, n: int) -> int:
-        if n < 2:
-            return n
-        prev = 0
-        curr = 1
-        for i in range(2, n + 1):
-            prev, curr = curr, prev + curr
-        return curr
+    def totalFruit(self, fruits: List[int]) -> int:
+        baskets = {}
+
+        left = 0
+        max_fruits = 0
+        for right in range(len(fruits)):
+            if right == 0 or fruits[right] != fruits[right - 1]:
+                baskets[fruits[right]] = right
+            if len(baskets) > 2:
+                left = baskets[fruits[right - 1]]
+                baskets.pop(fruits[left - 1])
+            max_fruits = max(max_fruits, right - left + 1)
+        return max_fruits
 
 
 # solution = Solution()
-# print(solution.fib(4))
-
+# print(solution.totalFruit([1, 2, 1]))
+# print(solution.totalFruit([0, 1, 2, 2]))
+# print(solution.totalFruit([1, 2, 3, 2, 2]))
+# print(solution.totalFruit([2, 3, 0, 3, 3, 2, 2, 2, 2, 2]))
 
 # @leet end

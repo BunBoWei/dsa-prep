@@ -38,18 +38,28 @@ from typing import *
 
 # @leet start
 class Solution:
-    def fib(self, n: int) -> int:
-        if n < 2:
-            return n
-        prev = 0
-        curr = 1
-        for i in range(2, n + 1):
-            prev, curr = curr, prev + curr
-        return curr
+    def isAnagram(self, s: str, t: str) -> bool:
+        char_map = {}
+        for char in s:
+            if char in char_map:
+                char_map[char] += 1
+            else:
+                char_map[char] = 1
+
+        for char in t:
+            if char not in char_map:
+                return False
+            else:
+                char_map[char] -= 1
+                if char_map[char] == 0:
+                    char_map.pop(char)
+
+        return len(char_map) == 0
 
 
 # solution = Solution()
-# print(solution.fib(4))
+# print(solution.isAnagram("anagram", "nagaram"))
 
 
 # @leet end
+
