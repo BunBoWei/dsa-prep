@@ -38,24 +38,19 @@ from typing import *
 
 # @leet start
 class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
-        last_seen = {}
-
-        max_sub = 0
-        left = 0
-        for right in range(len(s)):
-            if s[right] in last_seen:
-                left = max(last_seen[s[right]] + 1, left)
-
-            last_seen[s[right]] = right
-            max_sub = max(max_sub, right - left + 1)
-        return max_sub
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        heap = []
+        for n in nums:
+            heapq.heappush(heap, n)
+            print(heap)
+            if len(heap) > k:
+                heapq.heappop(heap)
+            print(heap)
+        return heap[0]
 
 
-# solution = Solution()
-# print(solution.lengthOfLongestSubstring("abcabcbb"))
-# print(solution.lengthOfLongestSubstring("bbbbb"))
-# print(solution.lengthOfLongestSubstring("pwwkew"))
-# print(solution.lengthOfLongestSubstring("abcbad"))
+solution = Solution()
+# print(solution.findKthLargest([3, 2, 1, 5, 6, 4], 2))
+print(solution.findKthLargest([10, 30, 20, 40, 35], k=2))
 
 # @leet end
