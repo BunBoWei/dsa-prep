@@ -35,6 +35,7 @@ import json
 from typing import *
 # @leet imports end
 
+
 # @leet start
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
@@ -42,10 +43,10 @@ class Solution:
         # Initialize with a "max" value (amount + 1 is a safe "infinity"
         # since we can never use more than 'amount' coins of value 1)
         dp = [amount + 1] * (amount + 1)
-        
+
         # 2. Base Case: 0 coins are needed to make amount 0
         dp[0] = 0
-        
+
         # 3. Build the DP array from 1 up to amount
         for a in range(1, amount + 1):
             # 4. For each amount 'a', check every coin
@@ -55,20 +56,20 @@ class Solution:
                     # Is it better to use the current coin 'c'?
                     # If so, the cost is 1 (for coin 'c') + dp[a - c]
                     # (the min coins needed for the remaining amount).
-                    print("A",a)
-                    print("C",c)
-                    print("AC",a - c)
+                    # print("A", a)
+                    # print("C", c)
+                    # print("AC", a - c)
                     dp[a] = min(dp[a], 1 + dp[a - c])
-                    print(dp)
-                   
+                    # print(dp)
+
         # 5. Final check:
         # If dp[amount] is still our "infinity" value, it was never updated,
         # meaning no coin combination could sum to 'amount'.
         return dp[amount] if dp[amount] != amount + 1 else -1
 
 
-solution = Solution()
-print(solution.coinChange([2,5], 3))
+# solution = Solution()
+# print(solution.coinChange([1, 2, 5], 11))
 
-        
+
 # @leet end

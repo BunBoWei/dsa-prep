@@ -40,28 +40,21 @@ from typing import *
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
         min_speed = 1
-        max_speed = 1
-        for pile in piles:
-            if pile > max_speed:
-                max_speed = pile
+        max_speed = max(piles)
 
-        min_eating_speed = max_speed
-        while min_speed <= max_speed:
-            mid = (max_speed + min_speed) // 2
-            hour_take = 0
+        while min_speed < max_speed:
+            mid = (min_speed + max_speed) // 2
+            hour_taken = 0
             for pile in piles:
-                hour_take += ceil(pile / mid)
-            if hour_take <= h:
-                min_eating_speed = min(min_eating_speed, mid)
-                max_speed = mid - 1
+                hour_taken += ceil(pile / mid)
+            if hour_taken <= h:
+                max_speed = mid
             else:
                 min_speed = mid + 1
-        return min_eating_speed
+        return min_speed
 
 
-solution = Solution()
+# solution = Solution()
 # print(solution.minEatingSpeed([3, 6, 7, 11], 8))
-# print(solution.minEatingSpeed([30, 11, 23, 4, 20], 5))
-print(solution.minEatingSpeed([3], 2))
 
 # @leet end
