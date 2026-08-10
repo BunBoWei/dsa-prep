@@ -42,21 +42,16 @@ class Solution:
         left = 0
         right = len(height) - 1
 
-        max_area = 0
-        area = 0
-
+        max_water = 0
         while left < right:
             if height[left] < height[right]:
-                area = (right - left) * height[left]
+                max_water = max(max_water, (right - left) * height[left])
                 left += 1
             else:
-                area = (right - left) * height[right]
+                max_water = max(max_water, (right - left) * height[right])
                 right -= 1
 
-            max_area = max_area if area < max_area else area
-
-        return max_area
+        return max_water
 
 
 # @leet end
-
