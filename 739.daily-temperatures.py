@@ -38,28 +38,23 @@ from typing import *
 
 # @leet start
 class Solution:
-    def trap(self, height: List[int]) -> int:
-        left = 0
-        right = len(height) - 1
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        stack = [0]
+        res = [0] * len(temperatures)
 
-        left_max, right_max = 0, 0
-        water_trapped = 0
-        while left < right:
-            if height[left] < height[right]:
-                left_max = max(left_max, height[left])
-                water_trapped += left_max - height[left]
-                left += 1
-            else:
-                right_max = max(right_max, height[right])
-                water_trapped += right_max - height[right]
-                right -= 1
-
-        return water_trapped
+        for i in range(1, len(temperatures)):
+            while len(stack) > 0 and temperatures[i] > temperatures[stack[-1]]:
+                last_index = stack.pop()
+                res[last_index] = i - last_index
+            stack.append(i)
+        return res
 
 
 # solution = Solution()
-# print(solution.trap(([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1])))
-# print(solution.trap(([4, 2, 0, 3, 2, 5])))
+# print(solution.dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]))
+# print(solution.dailyTemperatures([30, 40, 50, 60]))
+# print(solution.dailyTemperatures([30, 60, 90]))
+# print(solution.dailyTemperatures([30]))
 
 
 # @leet end
