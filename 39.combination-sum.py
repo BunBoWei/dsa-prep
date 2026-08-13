@@ -35,31 +35,34 @@ import json
 from typing import *
 # @leet imports end
 
+
 # @leet start
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         result = []
-        def backtrack(arr, sum, index):
-            print(arr,sum, index)
-            if sum == target:
-                result.append(arr[:])
+
+        def backtrack(arr, remaining, index):
+            if remaining == 0:
+                result.append(arr.copy())
                 return
 
-            if sum > target:
+            if remaining < 0:
                 return
 
             for i in range(index, len(candidates)):
-                sum += candidates[i] 
                 arr.append(candidates[i])
-                backtrack(arr, sum, i)
+                backtrack(arr, remaining - candidates[i], i)
                 arr.pop()
-                sum -= candidates[i]
 
-        backtrack([], 0, 0)
+        backtrack([], target, 0)
 
         return result
 
-solution = Solution()
-print(solution.combinationSum([7,8,3,4],11))
-        
+
+# solution = Solution()
+# print(solution.combinationSum([2, 3, 6, 7], 7))
+# print(solution.combinationSum([2, 3, 5], 8))
+# print(solution.combinationSum([2], 1))
+#
+
 # @leet end
