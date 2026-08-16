@@ -55,9 +55,9 @@ class Solution:
         return longest_sub
 
 
-# solution = Solution()
-# print(solution.lengthOfLongestSubstring("abcabcbb"))
-# print(solution.lengthOfLongestSubstring("bbbbb"))
+solution = Solution()
+print(solution.lengthOfLongestSubstring("abcabcbb"))
+print(solution.lengthOfLongestSubstring("bbbbb"))
 # print(solution.lengthOfLongestSubstring("pwwkew"))
 
 
